@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 import { createThemes } from 'tw-colors'
 import colors from 'tailwindcss/colors'
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 const baseColors = ['gray', 'red', 'yellow', 'green', 'blue', 'indigo', 'purple', 'pink']
 
@@ -56,6 +57,9 @@ const config: Config = {
       height: {
         // screen: ['100vh' /*fallback for old browser*/, '100dvh']
         screen: '100dvh'
+      },
+      fontFamily: {
+        sans: ['Inter Variable', ...defaultTheme.fontFamily.sans]
       }
     }
   },
