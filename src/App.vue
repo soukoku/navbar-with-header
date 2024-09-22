@@ -9,13 +9,13 @@ const mainNavExpanded = useStorage('mainNavExpanded', true)
 </script>
 
 <template>
-  <div class="h-screen bg-gray-50 text-gray-800 text-sm flex">
+  <div class="h-screen bg-gray-50 text-gray-800 text-sm flex relative">
     <MainSidebar v-model:expanded="mainNavExpanded" />
 
     <main class="flex-auto flex flex-col overflow-hidden">
       <MainHeader v-model:expanded="mainNavExpanded" />
 
-      <div class="p-4 bg-white rounded-tl-xl flex-auto border-l border-t border-gray-300">
+      <div class="p-4 bg-white md:rounded-tl-xl flex-auto border-l border-t border-gray-300">
         Page Content
         <ColorModeSelector large />
       </div>
