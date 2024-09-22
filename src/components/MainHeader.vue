@@ -8,6 +8,6 @@ const expanded = defineModel<boolean>('expanded', { required: true })
     <div class="flex items-center">
 
     </div>
-    <ColorModeSelector />
+    <ColorModeSelector hide-system />
   </div>
 </template>

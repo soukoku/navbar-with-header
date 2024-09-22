@@ -8,16 +8,21 @@ import {
 import { CheckCircleIcon } from '@heroicons/vue/20/solid'
 import { ComputerDesktopIcon, MoonIcon, SunIcon } from '@heroicons/vue/24/outline'
 import { useColorMode } from '@vueuse/core'
+import { computed } from 'vue'
 
-const props = defineProps<{ large?: boolean }>()
+const props = defineProps<{ large?: boolean, hideSystem?: boolean }>()
 
 const selectedTheme = useColorMode({ emitAuto: true })
 
-const themeList = [
-  { id: 'auto', title: 'System', icon: ComputerDesktopIcon, description: 'Use system color' },
-  { id: 'light', title: 'Light', icon: SunIcon, description: 'Use light color' },
-  { id: 'dark', title: 'Dark', icon: MoonIcon, description: 'Use dark color' }
-]
+const themeList = computed(() => {
+  const list = [
+    { id: 'light', title: 'Light', icon: SunIcon, description: 'Use light color' },
+    { id: 'dark', title: 'Dark', icon: MoonIcon, description: 'Use dark color' }]
+  if (!props.hideSystem) {
+    list.unshift({ id: 'auto', title: 'System', icon: ComputerDesktopIcon, description: 'Use system color' })
+  }
+  return list
+})
 
 </script>
 <template>
@@ -64,9 +69,8 @@ const themeList = [
           active ? 'border-blue-600 ring-2 ring-blue-600' : 'border-gray-300',
           checked ? 'bg-blue-600 text-blue-50 hover:bg-blue-700' : 'text-gray-900 bg-white hover:bg-gray-100',
           'relative inline-flex items-center px-3 py-2 text-sm font-semibold ring-1 ring-inset ring-gray-300 focus:z-10',
-          idx === 0 ? 'rounded-l-md' : '',
-          idx === 1 ? '-ml-px' : '',
-          idx === 2 ? '-ml-px rounded-r-md' : '',
+          idx === 0 ? 'rounded-l-md' : '-ml-px',
+          idx === themeList.length - 1 ? '-ml-px rounded-r-md' : '',
         ]" :title="theme.description">
           <span class="flex flex-1">
             <span class="flex flex-col">
