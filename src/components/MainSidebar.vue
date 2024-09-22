@@ -2,7 +2,7 @@
 const expanded = defineModel<boolean>('expanded', { required: true })
 </script>
 <template>
-  <div>
+  <div class="p-3">
     Sidebar!
   </div>
 </template>
